@@ -18,20 +18,18 @@ public class Controller {
     private MainChar mainChar;
 
     public void initialize() {
-        mainChar = new MainChar(10, 10, 60, 60, MainCanvas.getGraphicsContext2D());
+        mainChar = new MainChar(0, 450, 48, 52, MainCanvas.getGraphicsContext2D());
         gameLoop();
     }
 
 
     public void gameLoop() {
-        System.out.println("start");
         AnimationTimer animationTimer = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
                 addKeyInput(MainCanvas.getScene(), this);
                 mainChar.redraw();
-                System.out.println(mainChar.getPosX() + " " + mainChar.getPosY());
             }
         };
         animationTimer.start();

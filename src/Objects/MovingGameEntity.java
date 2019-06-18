@@ -27,8 +27,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     private double health;
 
-    private double posX = 0;
-    private double posY = 0;
+    private double speedValue;
 
     private boolean moving;
 
@@ -42,7 +41,8 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public abstract Rectangle2D getTop();
 
-    public MovingGameEntity(Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext) {
+    public MovingGameEntity(double speedValue, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext) {
+        this.speedValue = speedValue;
         this.walkingup = walkingup;
         this.walkingdown = walkingdown;
         this.walkingleft = walkingleft;
@@ -55,25 +55,25 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public void moveRight() {
-        rightspeed = 2;
+        rightspeed = speedValue;
         lastdirection = "RIGHT";
         moving = true;
     }
 
     public void moveLeft() {
-        leftspeed = -2;
+        leftspeed = - speedValue;
         lastdirection = "LEFT";
         moving = true;
     }
 
     public void moveUp() {
-        upspeed = 2;
+        upspeed = - speedValue;
         lastdirection = "UP";
         moving = true;
     }
 
     public void moveDown() {
-        downspeed = -2;
+        downspeed = speedValue;
         lastdirection = "DOWN";
         moving = true;
     }
@@ -110,7 +110,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
         changeImage();
 
-        gContext.drawImage(currentimage, posX, posY, getWidth(), getHeight());
+        gContext.drawImage(currentimage, getPosX(), getPosY(), getWidth(), getHeight());
     }
 
     private void changeImage() {

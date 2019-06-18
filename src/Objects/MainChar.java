@@ -23,7 +23,7 @@ public class MainChar extends MovingGameEntity {
 
 
     public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext) {
-        super(walkingup,walkingdown,walkingleft,walkingright,idleup,idledown,idleleft,idleright,gContext);
+        super(5,walkingup,walkingdown,walkingleft,walkingright,idleup,idledown,idleleft,idleright,gContext);
         this.posX = posX;
         this.posY = posY;
         this.width = width;
