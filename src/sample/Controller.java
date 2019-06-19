@@ -1,24 +1,22 @@
 package sample;
 
+import Level.BasicRoom;
 import Objects.MainChar;
-import Objects.MovingGameEntity;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 
 public class Controller {
     @FXML
     Canvas MainCanvas;
-    private GraphicsContext graphicsContext;
     private MainChar mainChar;
+    private BasicRoom wallList;
 
     public void initialize() {
-        mainChar = new MainChar(0, 450, 48, 52, MainCanvas.getGraphicsContext2D());
+        mainChar = new MainChar(0, 450, 48, 48, MainCanvas.getGraphicsContext2D());
+        wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
         gameLoop();
     }
 
@@ -30,6 +28,7 @@ public class Controller {
             public void handle(long now) {
                 addKeyInput(MainCanvas.getScene(), this);
                 mainChar.redraw();
+                wallList.drawRoom();
             }
         };
         animationTimer.start();

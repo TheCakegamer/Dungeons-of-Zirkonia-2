@@ -11,19 +11,19 @@ public class MainChar extends MovingGameEntity {
     private double width;
     private double height;
 
-    private static Image walkingup =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()); //TODO add images
-    private static Image walkingdown =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
-    private static Image walkingleft =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
-    private static Image walkingright =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image walkingup = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()); //TODO add images
+    private static Image walkingdown = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image walkingleft = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image walkingright = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
 
-    private static Image idleup =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
-    private static Image idledown =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
-    private static Image idleleft =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
-    private static Image idleright =  new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image idleup = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image idledown = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image idleleft = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
+    private static Image idleright = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
 
 
     public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext) {
-        super(5,walkingup,walkingdown,walkingleft,walkingright,idleup,idledown,idleleft,idleright,gContext);
+        super(5, walkingup, walkingdown, walkingleft, walkingright, idleup, idledown, idleleft, idleright, gContext);
         this.posX = posX;
         this.posY = posY;
         this.width = width;

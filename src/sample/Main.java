@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Dungeons of Zirkonia 2");
-        primaryStage.setScene(new Scene(root, 575, 652));
+        primaryStage.setScene(new Scene(root, 768, 768));
         primaryStage.show();
     }
 

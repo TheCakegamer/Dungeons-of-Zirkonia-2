@@ -61,13 +61,13 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public void moveLeft() {
-        leftspeed = - speedValue;
+        leftspeed = -speedValue;
         lastdirection = "LEFT";
         moving = true;
     }
 
     public void moveUp() {
-        upspeed = - speedValue;
+        upspeed = -speedValue;
         lastdirection = "UP";
         moving = true;
     }
