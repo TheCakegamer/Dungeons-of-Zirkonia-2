@@ -1,5 +1,6 @@
 package Objects;
 
+import Level.BasicRoom;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -22,8 +23,8 @@ public class MainChar extends MovingGameEntity {
     private static Image idleright = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
 
 
-    public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext) {
-        super(5, walkingup, walkingdown, walkingleft, walkingright, idleup, idledown, idleleft, idleright, gContext);
+    public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
+        super(5, walkingup, walkingdown, walkingleft, walkingright, idleup, idledown, idleleft, idleright, gContext, walls);
         this.posX = posX;
         this.posY = posY;
         this.width = width;

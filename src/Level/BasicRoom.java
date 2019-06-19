@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BasicRoom {
 
-    private ArrayList<Wall> WallList = new ArrayList<>();
+    ArrayList<Wall> WallList = new ArrayList<>();
 
     public BasicRoom(GraphicsContext gContext) {
         int index = 0;

@@ -1,5 +1,7 @@
 package Objects;
 
+import Level.BasicRoom;
+import Level.Collisions;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -31,6 +33,10 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     private boolean moving;
 
+    private Collisions collisions = new Collisions();
+
+    private BasicRoom walls;
+
     private String lastdirection = "RIGHT";
 
     public abstract Rectangle2D getBottom();
@@ -41,7 +47,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public abstract Rectangle2D getTop();
 
-    public MovingGameEntity(double speedValue, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext) {
+    public MovingGameEntity(double speedValue, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls) {
         this.speedValue = speedValue;
         this.walkingup = walkingup;
         this.walkingdown = walkingdown;
@@ -52,30 +58,39 @@ public abstract class MovingGameEntity extends BasicGameEntity {
         this.idleleft = idleleft;
         this.idleright = idleright;
         this.gContext = gContext;
+        this.walls = walls;
     }
 
     public void moveRight() {
-        rightspeed = speedValue;
-        lastdirection = "RIGHT";
-        moving = true;
+        if (collisions.checkWallRight(this, walls)) {
+            rightspeed = speedValue;
+            lastdirection = "RIGHT";
+            moving = true;
+        }
     }
 
     public void moveLeft() {
-        leftspeed = -speedValue;
-        lastdirection = "LEFT";
-        moving = true;
+        if (collisions.checkWallLeft(this, walls)) {
+            leftspeed = -speedValue;
+            lastdirection = "LEFT";
+            moving = true;
+        }
     }
 
     public void moveUp() {
-        upspeed = -speedValue;
-        lastdirection = "UP";
-        moving = true;
+        if (collisions.checkWallUp(this, walls)) {
+            upspeed = -speedValue;
+            lastdirection = "UP";
+            moving = true;
+        }
     }
 
     public void moveDown() {
-        downspeed = speedValue;
-        lastdirection = "DOWN";
-        moving = true;
+        if (collisions.checkWallDown(this, walls)) {
+            downspeed = speedValue;
+            lastdirection = "DOWN";
+            moving = true;
+        }
     }
 
     public void stopleft() {
@@ -137,5 +152,37 @@ public abstract class MovingGameEntity extends BasicGameEntity {
                 currentimage = idledown;
                 break;
         }
+    }
+
+    public double getLeftspeed() {
+        return leftspeed;
+    }
+
+    public void setLeftspeed(double leftspeed) {
+        this.leftspeed = leftspeed;
+    }
+
+    public double getRightspeed() {
+        return rightspeed;
+    }
+
+    public void setRightspeed(double rightspeed) {
+        this.rightspeed = rightspeed;
+    }
+
+    public double getUpspeed() {
+        return upspeed;
+    }
+
+    public void setUpspeed(double upspeed) {
+        this.upspeed = upspeed;
+    }
+
+    public double getDownspeed() {
+        return downspeed;
+    }
+
+    public void setDownspeed(double downspeed) {
+        this.downspeed = downspeed;
     }
 }
