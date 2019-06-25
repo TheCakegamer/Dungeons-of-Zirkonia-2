@@ -16,7 +16,7 @@ public class Controller {
 
     public void initialize() {
         wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
-        mainChar = new MainChar(0, 450, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
+        mainChar = new MainChar(64, 64, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
         gameLoop();
     }
 

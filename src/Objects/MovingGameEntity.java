@@ -62,35 +62,27 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public void moveRight() {
-        if (collisions.checkWallRight(this, walls)) {
             rightspeed = speedValue;
             lastdirection = "RIGHT";
             moving = true;
-        }
     }
 
     public void moveLeft() {
-        if (collisions.checkWallLeft(this, walls)) {
             leftspeed = -speedValue;
             lastdirection = "LEFT";
             moving = true;
-        }
     }
 
     public void moveUp() {
-        if (collisions.checkWallUp(this, walls)) {
             upspeed = -speedValue;
             lastdirection = "UP";
             moving = true;
-        }
     }
 
     public void moveDown() {
-        if (collisions.checkWallDown(this, walls)) {
             downspeed = speedValue;
             lastdirection = "DOWN";
             moving = true;
-        }
     }
 
     public void stopleft() {
@@ -120,8 +112,8 @@ public abstract class MovingGameEntity extends BasicGameEntity {
                 gContext.getCanvas().getWidth(),
                 gContext.getCanvas().getHeight());
 
-        setPosX(getPosX() + rightspeed + leftspeed);
-        setPosY(getPosY() + upspeed + downspeed);
+        setPosX(getPosX() + getRightspeed() + getLeftspeed());
+        setPosY(getPosY() + getUpspeed() + getDownspeed());
 
         changeImage();
 
@@ -155,6 +147,9 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public double getLeftspeed() {
+        if (!collisions.checkWallLeft(this, walls)) {
+            stopleft();
+        }
         return leftspeed;
     }
 
@@ -163,6 +158,9 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public double getRightspeed() {
+        if (!collisions.checkWallRight(this, walls)) {
+            stopright();
+        }
         return rightspeed;
     }
 
@@ -171,6 +169,9 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public double getUpspeed() {
+        if (!collisions.checkWallUp(this, walls)) {
+            stopup();
+        }
         return upspeed;
     }
 
@@ -179,6 +180,9 @@ public abstract class MovingGameEntity extends BasicGameEntity {
     }
 
     public double getDownspeed() {
+        if (!collisions.checkWallDown(this, walls)) {
+            stopdown();
+        }
         return downspeed;
     }
 

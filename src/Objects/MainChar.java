@@ -76,22 +76,22 @@ public class MainChar extends MovingGameEntity {
 
     @Override
     public Rectangle2D getBottom() {
-        return new Rectangle2D(posX + 8, posY + height, width - 16, 1);
+        return new Rectangle2D(posX + 1, posY + height, width - 1, 5);
     }
 
     @Override
     public Rectangle2D getLeft() {
-        return new Rectangle2D(posX + 8, posY, 1, height);
+        return new Rectangle2D(posX - 5, posY - 1, 5, height - 1);
     }
 
     @Override
     public Rectangle2D getRight() {
-        return new Rectangle2D(posX + width - 8, posY, 1, height);
+        return new Rectangle2D(posX + width, posY + 1, 5, height - 1);
     }
 
     @Override
     public Rectangle2D getTop() {
-        return new Rectangle2D(posX + 8, posY, width - 16, 1);
+        return new Rectangle2D(posX - 1, posY - 5, width - 1, 5);
     }
 
 }
