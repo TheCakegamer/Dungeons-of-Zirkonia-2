@@ -29,6 +29,7 @@ public abstract class BasicAI extends MovingGameEntity {
     private boolean isMovedHorizontally() {
         return Math.abs(getMainCharDiffX()) > Math.abs(getMainCharDiffY());
     }
+
     private boolean isMovedVertically() {
         return Math.abs(getMainCharDiffX()) < Math.abs(getMainCharDiffY());
     }
@@ -37,22 +38,20 @@ public abstract class BasicAI extends MovingGameEntity {
         System.out.println("X: " + getMainCharDiffX());
         System.out.println("Y: " + getMainCharDiffY());
         if (isMovedHorizontally()) {
+            stopAll();
             if (getMainCharDiffX() > 0) {
-                stopAll();
                 moveLeft();
                 return;
             }
-            stopAll();
             moveRight();
             return;
         }
         if (isMovedVertically()) {
+            stopAll();
             if (getMainCharDiffY() > 0) {
-                stopAll();
                 moveUp();
                 return;
             }
-            stopAll();
             moveDown();
             return;
         }
