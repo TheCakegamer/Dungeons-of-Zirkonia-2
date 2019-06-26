@@ -1,7 +1,7 @@
 package Enemy;
 
 import Level.BasicRoom;
-import Objects.MainChar;
+import Player.MainChar;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -48,21 +48,21 @@ public class Slime extends BasicAI {
 
     @Override
     public Rectangle2D getBottom() {
-        return new Rectangle2D(getPosX() + 4, getPosY() + getHeight(), getWidth() - 8, 2);
+        return new Rectangle2D(getPosX() + 2, getPosY() + getHeight(), getWidth() - 4, 2);
     }
 
     @Override
     public Rectangle2D getLeft() {
-        return new Rectangle2D(getPosX() - 2, getPosY() + 4, 2, getHeight() - 8);
+        return new Rectangle2D(getPosX() - 2, getPosY() + 2, 2, getHeight() - 4);
     }
 
     @Override
     public Rectangle2D getRight() {
-        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 4, 2, getHeight() - 8);
+        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 2, 2, getHeight() - 4);
     }
 
     @Override
     public Rectangle2D getTop() {
-        return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 2);
+        return new Rectangle2D(getPosX() + 2, getPosY() - 2, getWidth() - 4, 2);
     }
 }

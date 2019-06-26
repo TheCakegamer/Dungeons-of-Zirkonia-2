@@ -2,11 +2,14 @@ package sample;
 
 import Enemy.Slime;
 import Level.BasicRoom;
-import Objects.MainChar;
+import Mechanics.Item;
+import Mechanics.Weapon;
+import Player.MainChar;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 public class Controller {
@@ -19,7 +22,8 @@ public class Controller {
     public void initialize() {
         wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
         mainChar = new MainChar(64, 64, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
-        slime = new Slime(2, 640, 640, 48, 48, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
+        mainChar.inventory.additem(new Weapon(10, new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()), 10, 1, 0));
+        slime = new Slime(2, 640, 640, 32, 32, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
         gameLoop();
     }
 
@@ -59,6 +63,18 @@ public class Controller {
             if (event.getCode() == KeyCode.S || event.getCode() == KeyCode.DOWN) {
                 mainChar.moveDown();
                 System.out.println("DOWN");
+            }
+
+            if (event.getCode() == KeyCode.E) {
+                wallList.addWall(3, 3);
+                wallList.addWall(4, 3);
+                wallList.addWall(5, 3);
+                wallList.addWall(2, 3);
+                wallList.addWall(3, 4);
+                wallList.addWall(3, 5);
+                wallList.addWall(3, 7);
+                wallList.addWall(3, 8);
+                mainChar.inventory.additem(new Weapon(10, new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()), 10, 1, mainChar.inventory.getFreeSlot()));
             }
         });
 

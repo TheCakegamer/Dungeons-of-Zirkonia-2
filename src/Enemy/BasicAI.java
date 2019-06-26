@@ -4,7 +4,7 @@ import Level.BasicRoom;
 import Objects.MovingGameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import Objects.MainChar;
+import Player.MainChar;
 
 public abstract class BasicAI extends MovingGameEntity {
 
