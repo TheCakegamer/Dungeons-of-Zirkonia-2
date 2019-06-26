@@ -10,6 +10,7 @@ public class Wall extends BasicGameEntity {
     private Image wallimg = new Image(getClass().getResource("/resources/dungeonwall.png").toExternalForm());
 
     public Wall(GraphicsContext gContext, double gridX, double gridY) {
+        super(gridX * 48, gridY * 48, 48, 48);
         this.gContext = gContext;
         setWidth(48);
         setHeight(48);

@@ -1,5 +1,6 @@
 package sample;
 
+import Enemy.Slime;
 import Level.BasicRoom;
 import Objects.MainChar;
 import javafx.animation.AnimationTimer;
@@ -13,10 +14,12 @@ public class Controller {
     Canvas MainCanvas;
     private MainChar mainChar;
     private BasicRoom wallList;
+    private Slime slime;
 
     public void initialize() {
         wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
         mainChar = new MainChar(64, 64, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
+        slime = new Slime(2, 640, 640, 48, 48, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
         gameLoop();
     }
 
@@ -27,6 +30,7 @@ public class Controller {
             @Override
             public void handle(long now) {
                 addKeyInput(MainCanvas.getScene(), this);
+                slime.redraw();
                 mainChar.redraw();
                 wallList.drawRoom();
             }

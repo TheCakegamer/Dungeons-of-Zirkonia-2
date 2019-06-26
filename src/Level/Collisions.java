@@ -40,4 +40,8 @@ public class Collisions {
         }
         return true;
     }
+
+    public boolean checkHitbox(MovingGameEntity object1, MovingGameEntity object2) {
+        return object1.getHitbox().intersects(object2.getHitbox());
+    }
 }

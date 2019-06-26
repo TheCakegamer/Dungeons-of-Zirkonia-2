@@ -1,12 +1,12 @@
-package Objects;
+package Enemy;
 
 import Level.BasicRoom;
+import Objects.MainChar;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class MainChar extends MovingGameEntity {
-
+public class Slime extends BasicAI {
 
     private static Image walkingup = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()); //TODO add images
     private static Image walkingdown = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
@@ -19,12 +19,30 @@ public class MainChar extends MovingGameEntity {
     private static Image idleright = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
 
 
-    public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
-        super(5, posX, posY, width, height, walkingup, walkingdown, walkingleft, walkingright, idleup, idledown, idleleft, idleright, gContext, walls);
+    public Slime(double speedValue, double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+        super(speedValue,
+                posX,
+                posY,
+                width,
+                height,
+                Slime.walkingup,
+                Slime.walkingdown,
+                Slime.walkingleft,
+                Slime.walkingright,
+                Slime.idleup,
+                Slime.idledown,
+                Slime.idleleft,
+                Slime.idleright,
+                gContext,
+                walls,
+                mainChar);
+        setPosX(posX);
+        setPosY(posY);
     }
 
-
+    @Override
     public void redraw() {
+        moveToMainChar();
         super.redraw();
     }
 
@@ -47,5 +65,4 @@ public class MainChar extends MovingGameEntity {
     public Rectangle2D getTop() {
         return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 2);
     }
-
 }

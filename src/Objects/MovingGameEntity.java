@@ -39,6 +39,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     private String lastdirection = "RIGHT";
 
+
     public abstract Rectangle2D getBottom();
 
     public abstract Rectangle2D getLeft();
@@ -47,7 +48,8 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public abstract Rectangle2D getTop();
 
-    public MovingGameEntity(double speedValue, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls) {
+    public MovingGameEntity(double speedValue, double posX, double posY, double width, double height, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls) {
+        super(posX, posY, width, height);
         this.speedValue = speedValue;
         this.walkingup = walkingup;
         this.walkingdown = walkingdown;
@@ -105,12 +107,19 @@ public abstract class MovingGameEntity extends BasicGameEntity {
         moving = false;
     }
 
+    public void stopAll() {
+        stopright();
+        stopleft();
+        stopup();
+        stopdown();
+    }
+
     public void redraw() {
         gContext.clearRect(
-                gContext.getCanvas().getLayoutX(),
-                gContext.getCanvas().getLayoutY(),
-                gContext.getCanvas().getWidth(),
-                gContext.getCanvas().getHeight());
+                getPosX(),
+                getPosY(),
+                getWidth(),
+                getHeight());
 
         setPosX(getPosX() + getRightspeed() + getLeftspeed());
         setPosY(getPosY() + getUpspeed() + getDownspeed());
@@ -148,7 +157,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public double getLeftspeed() {
         if (!collisions.checkWallLeft(this, walls)) {
-            stopleft();
+            return 0;
         }
         return leftspeed;
     }
@@ -159,7 +168,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public double getRightspeed() {
         if (!collisions.checkWallRight(this, walls)) {
-            stopright();
+            return 0;
         }
         return rightspeed;
     }
@@ -170,7 +179,7 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public double getUpspeed() {
         if (!collisions.checkWallUp(this, walls)) {
-            stopup();
+            return 0;
         }
         return upspeed;
     }
@@ -181,12 +190,16 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public double getDownspeed() {
         if (!collisions.checkWallDown(this, walls)) {
-            stopdown();
+            return 0;
         }
         return downspeed;
     }
 
     public void setDownspeed(double downspeed) {
         this.downspeed = downspeed;
+    }
+
+    public Rectangle2D getHitbox() {
+        return new Rectangle2D(getPosX(), getPosY(), getWidth(), getHeight());
     }
 }

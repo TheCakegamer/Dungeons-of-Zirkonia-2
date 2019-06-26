@@ -7,8 +7,10 @@ import java.util.ArrayList;
 public class BasicRoom {
 
     ArrayList<Wall> WallList = new ArrayList<>();
+    private GraphicsContext gContext;
 
     public BasicRoom(GraphicsContext gContext) {
+        this.gContext = gContext;
         int index = 0;
         for (int x = 1; x < 15; x++) {
             WallList.add(index, new Wall(gContext, x, 0));
@@ -24,6 +26,10 @@ public class BasicRoom {
             WallList.add(index, new Wall(gContext, 15, y));
             index++;
         }
+    }
+
+    public void addWall(int gridX, int gridY) {
+        WallList.add(new Wall(gContext, gridX, gridY));
     }
 
     public void drawRoom() {

@@ -7,6 +7,13 @@ public abstract class BasicGameEntity {
     private double height;
     private double width;
 
+    public BasicGameEntity(double posX, double posY, double width, double height) {
+        this.posX = posX;
+        this.posY = posY;
+        this.height = height;
+        this.width = width;
+    }
+
     public double getPosX() {
         return posX;
     }
