@@ -33,35 +33,44 @@ public abstract class BasicAI extends DamagableGameEntity {
         return this.getPosY() - mainChar.getPosY();
     }
 
+    private boolean isMovedHorizontally() {
+        return Math.abs(getMainCharDiffX()) > Math.abs(getMainCharDiffY());
+    }
+
+    private boolean isMovedVertically() {
+        return Math.abs(getMainCharDiffX()) < Math.abs(getMainCharDiffY());
+    }
+
     public void moveToMainChar() {
         System.out.println("X: " + getMainCharDiffX());
         System.out.println("Y: " + getMainCharDiffY());
-        if (Math.abs(getMainCharDiffX()) > Math.abs(getMainCharDiffY())) {
+        if (isMovedHorizontally()) {
+            stopAll();
             if (getMainCharDiffX() > 0) {
-                stopAll();
                 moveLeft();
-            } else if (getMainCharDiffX() < 0) {
-                stopAll();
-                moveRight();
+                return;
             }
-        } else if (Math.abs(getMainCharDiffX()) < Math.abs(getMainCharDiffY())) {
+            moveRight();
+            return;
+        }
+        if (isMovedVertically()) {
+            stopAll();
             if (getMainCharDiffY() > 0) {
-                stopAll();
                 moveUp();
-            } else if (getMainCharDiffY() < 0) {
-                stopAll();
-                moveDown();
+                return;
             }
-        } else {
-            if (getMainCharDiffX() > 0) {
-                moveLeft();
-            } else if (getMainCharDiffX() < 0) {
-                moveRight();
-            } else if (getMainCharDiffY() > 0) {
-                moveUp();
-            } else if (getMainCharDiffY() < 0) {
-                moveDown();
-            }
+            moveDown();
+            return;
+        }
+
+        if (getMainCharDiffX() > 0) {
+            moveLeft();
+        } else if (getMainCharDiffX() < 0) {
+            moveRight();
+        } else if (getMainCharDiffY() > 0) {
+            moveUp();
+        } else if (getMainCharDiffY() < 0) {
+            moveDown();
         }
 
     }
