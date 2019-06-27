@@ -6,6 +6,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 public abstract class MovingGameEntity extends BasicGameEntity {
 
     private GraphicsContext gContext;
@@ -48,17 +50,17 @@ public abstract class MovingGameEntity extends BasicGameEntity {
 
     public abstract Rectangle2D getTop();
 
-    public MovingGameEntity(double speedValue, double posX, double posY, double width, double height, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls) {
+    public MovingGameEntity(double speedValue, double posX, double posY, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
         super(posX, posY, width, height);
         this.speedValue = speedValue;
-        this.walkingup = walkingup;
-        this.walkingdown = walkingdown;
-        this.walkingleft = walkingleft;
-        this.walkingright = walkingright;
-        this.idleup = idleup;
-        this.idledown = idledown;
-        this.idleleft = idleleft;
-        this.idleright = idleright;
+        this.walkingup = images.get(0);
+        this.walkingdown = images.get(1);
+        this.walkingleft = images.get(2);
+        this.walkingright = images.get(3);
+        this.idleup = images.get(4);
+        this.idledown = images.get(5);
+        this.idleleft = images.get(6);
+        this.idleright = images.get(7);
         this.gContext = gContext;
         this.walls = walls;
     }

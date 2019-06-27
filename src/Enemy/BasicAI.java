@@ -1,29 +1,25 @@
 package Enemy;
 
 import Level.BasicRoom;
-import Objects.MovingGameEntity;
+import Objects.DamagableGameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import Player.MainChar;
 
-public abstract class BasicAI extends MovingGameEntity {
+import java.util.ArrayList;
+
+public abstract class BasicAI extends DamagableGameEntity {
 
     private MainChar mainChar;
 
-    public BasicAI(double speedValue, double posX, double posY, double width, double height, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+    public BasicAI(double speedValue, double health, double posX, double posY, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
         super(speedValue,
+                health,
                 posX,
                 posY,
                 width,
                 height,
-                walkingup,
-                walkingdown,
-                walkingleft,
-                walkingright,
-                idleup,
-                idledown,
-                idleleft,
-                idleright,
+                images,
                 gContext,
                 walls);
         this.mainChar = mainChar;

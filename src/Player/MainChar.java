@@ -1,13 +1,15 @@
 package Player;
 
 import Level.BasicRoom;
-import Mechanics.Health;
-import Objects.MovingGameEntity;
+import Objects.DamagableGameEntity;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class MainChar extends MovingGameEntity {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class MainChar extends DamagableGameEntity {
 
 
     private static Image walkingup = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()); //TODO add images
@@ -20,11 +22,13 @@ public class MainChar extends MovingGameEntity {
     private static Image idleleft = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
     private static Image idleright = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
 
+    public static ArrayList<Image> images = new ArrayList<>(Arrays.asList(walkingup, walkingdown, walkingleft, walkingright,
+            idleup, idledown, idleleft, idleright));
+
     public Inventory inventory = new Inventory();
-    private Health health = new Health(100);
 
     public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
-        super(5, posX, posY, width, height, walkingup, walkingdown, walkingleft, walkingright, idleup, idledown, idleleft, idleright, gContext, walls);
+        super(5, 100.0, posX, posY, width, height, images, gContext, walls);
     }
 
 
