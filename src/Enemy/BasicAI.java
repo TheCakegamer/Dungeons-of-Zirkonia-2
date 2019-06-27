@@ -10,22 +10,11 @@ public abstract class BasicAI extends MovingGameEntity {
 
     private MainChar mainChar;
 
-    public BasicAI(double speedValue, double posX, double posY, double width, double height, Image walkingup, Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft, Image idleright, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
-        super(speedValue,
-                posX,
-                posY,
-                width,
-                height,
-                walkingup,
-                walkingdown,
-                walkingleft,
-                walkingright,
-                idleup,
-                idledown,
-                idleleft,
-                idleright,
-                gContext,
-                walls);
+    public BasicAI(double speedValue, double posX, double posY, double width, double height, Image walkingup,
+            Image walkingdown, Image walkingleft, Image walkingright, Image idleup, Image idledown, Image idleleft,
+            Image idleright, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+        super(speedValue, posX, posY, width, height, walkingup, walkingdown, walkingleft, walkingright, idleup,
+                idledown, idleleft, idleright, gContext, walls);
         this.mainChar = mainChar;
     }
 
@@ -37,35 +26,44 @@ public abstract class BasicAI extends MovingGameEntity {
         return this.getPosY() - mainChar.getPosY();
     }
 
+    private boolean isMovedHorizontally() {
+        return Math.abs(getMainCharDiffX()) > Math.abs(getMainCharDiffY());
+    }
+
+    private boolean isMovedVertically() {
+        return Math.abs(getMainCharDiffX()) < Math.abs(getMainCharDiffY());
+    }
+
     public void moveToMainChar() {
         System.out.println("X: " + getMainCharDiffX());
         System.out.println("Y: " + getMainCharDiffY());
-        if (Math.abs(getMainCharDiffX()) > Math.abs(getMainCharDiffY())) {
+        if (isMovedHorizontally()) {
+            stopAll();
             if (getMainCharDiffX() > 0) {
-                stopAll();
                 moveLeft();
-            } else if (getMainCharDiffX() < 0) {
-                stopAll();
-                moveRight();
+                return;
             }
-        } else if (Math.abs(getMainCharDiffX()) < Math.abs(getMainCharDiffY())) {
+            moveRight();
+            return;
+        }
+        if (isMovedVertically()) {
+            stopAll();
             if (getMainCharDiffY() > 0) {
-                stopAll();
                 moveUp();
-            } else if (getMainCharDiffY() < 0) {
-                stopAll();
-                moveDown();
+                return;
             }
-        } else {
-            if (getMainCharDiffX() > 0) {
-                moveLeft();
-            } else if (getMainCharDiffX() < 0) {
-                moveRight();
-            } else if (getMainCharDiffY() > 0) {
-                moveUp();
-            } else if (getMainCharDiffY() < 0) {
-                moveDown();
-            }
+            moveDown();
+            return;
+        }
+
+        if (getMainCharDiffX() > 0) {
+            moveLeft();
+        } else if (getMainCharDiffX() < 0) {
+            moveRight();
+        } else if (getMainCharDiffY() > 0) {
+            moveUp();
+        } else if (getMainCharDiffY() < 0) {
+            moveDown();
         }
 
     }
