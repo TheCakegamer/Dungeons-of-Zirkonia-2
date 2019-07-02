@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public abstract class DamagableGameEntity extends MovingGameEntity {
 
-    public double health;
-    public double totalHealth;
+    private double health;
+    private double totalHealth;
 
     public DamagableGameEntity(double speedValue, double health, double posX, double posY, double width, double height,
                                ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
@@ -45,7 +45,8 @@ public abstract class DamagableGameEntity extends MovingGameEntity {
     }
 
     public void getDamage(Weapon weapon) {
-        weapon.dealDamage(health);
+        weapon.reduceDurability();
+        setHealth(getHealth() - weapon.getDamage());
         //TODO Knockback
     }
 
@@ -53,7 +54,7 @@ public abstract class DamagableGameEntity extends MovingGameEntity {
         return health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(double health) {
         this.health = health;
     }
 
