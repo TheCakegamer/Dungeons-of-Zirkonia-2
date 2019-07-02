@@ -100,6 +100,20 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
         gContext.drawImage(currentimage, getPosition().getX(), getPosition().getY(), getWidth(), getHeight());
     }
 
+    public boolean isCollidedRight() {
+        return !collisions.checkWallRight(this, walls);
+    }
+
+    public boolean isCollidedLeft() {
+        return !collisions.checkWallLeft(this, walls);
+    }
+    public boolean isCollidedTop() {
+        return !collisions.checkWallUp(this, walls);
+    }
+    public boolean isCollidedBottom() {
+        return !collisions.checkWallDown(this, walls);
+    }
+
     private void changeImage() {
         if (speed.getX() > 0) {
             currentimage = walkingright;
