@@ -1,10 +1,10 @@
-package sample;
+package app.sample;
 
-import Enemy.Slime;
-import Level.BasicRoom;
-import Mechanics.Item;
-import Mechanics.Weapon;
-import Player.MainChar;
+import app.Vector2d;
+import app.enemy.Slime;
+import app.level.BasicRoom;
+import app.mechanics.Weapon;
+import app.player.MainChar;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -23,7 +23,7 @@ public class Controller {
         wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
         mainChar = new MainChar(64, 64, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
         mainChar.inventory.additem(new Weapon(10, new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()), 10, 1, 0));
-        slime = new Slime(2, 640, 640, 32, 32, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
+        slime = new Slime(new Vector2d(2, 0), new Vector2d(640, 640), 32, 32, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
         gameLoop();
     }
 
@@ -81,16 +81,16 @@ public class Controller {
 
         scene.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-                mainChar.stopright();
+                mainChar.stop();
             }
             if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-                mainChar.stopleft();
+                mainChar.stop();
             }
             if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
-                mainChar.stopup();
+                mainChar.stop();
             }
             if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
-                mainChar.stopdown();
+                mainChar.stop();
             }
         });
     }

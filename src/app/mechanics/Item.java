@@ -1,6 +1,7 @@
-package Mechanics;
+package app.mechanics;
 
-import Objects.BasicGameEntity;
+import app.Vector2d;
+import app.objects.BasicGameEntity;
 import javafx.scene.image.Image;
 
 public class Item extends BasicGameEntity {
@@ -11,7 +12,7 @@ public class Item extends BasicGameEntity {
     private int slot;
 
     Item(Image image, double durability, double durPerUse, int slot) {
-        super(-96, slot * 64, 64, 64);
+        super(new Vector2d(-96, slot * 64), 64, 64);
         this.image = image;
         this.durability = durability;
         this.durPerUse = durPerUse;
@@ -25,4 +26,7 @@ public class Item extends BasicGameEntity {
         this.durability -= durPerUse;
     }
 
+    public int getSlot() {
+        return slot;
+    }
 }

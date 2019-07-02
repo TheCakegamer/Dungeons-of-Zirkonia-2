@@ -1,7 +1,9 @@
-package Enemy;
+package app.player;
 
-import Level.BasicRoom;
-import Player.MainChar;
+import app.Vector2d;
+import app.level.BasicRoom;
+import app.mechanics.Weapon;
+import app.objects.DamagableGameEntity;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -9,7 +11,8 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Slime extends BasicAI {
+public class MainChar extends DamagableGameEntity {
+
 
     private static Image walkingup = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()); //TODO add images
     private static Image walkingdown = new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm());//TODO add images
@@ -24,64 +27,63 @@ public class Slime extends BasicAI {
     public static ArrayList<Image> images = new ArrayList<>(Arrays.asList(walkingup, walkingdown, walkingleft, walkingright,
             idleup, idledown, idleleft, idleright));
 
-    public Slime(double speedValue, double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
-        super(speedValue,
-                50,
-                posX,
-                posY,
-                width,
-                height,
-                images,
-                gContext,
-                walls,
-                mainChar);
-        setPosX(posX);
-        setPosY(posY);
+    public Inventory inventory = new Inventory();
+
+    public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
+        super(new Vector2d(5d, 0d), 100.0, new Vector2d(posX, posY), width, height, images, gContext, walls);
     }
 
-    @Override
+
     public void redraw() {
-        moveToMainChar();
         super.redraw();
     }
 
     @Override
     public Rectangle2D getBottom() {
-        return new Rectangle2D(getPosX() + 2, getPosY() + getHeight(), getWidth() - 4, 2);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() + getHeight(), getWidth() - 8, 2);
     }
 
     @Override
     public Rectangle2D getLeft() {
-        return new Rectangle2D(getPosX() - 2, getPosY() + 2, 2, getHeight() - 4);
+        return new Rectangle2D(getPosition().getX() - 2, getPosition().getY() + 4, 2, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getRight() {
-        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 2, 2, getHeight() - 4);
+        return new Rectangle2D(getPosition().getX() + getWidth(), getPosition().getY() + 4, 2, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getTop() {
-        return new Rectangle2D(getPosX() + 2, getPosY() - 2, getWidth() - 4, 2);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() - 2, getWidth() - 8, 2);
     }
 
     @Override
     public Rectangle2D getAttackfieldRight() {
-        return null;
+        return new Rectangle2D(getPosition().getX() + getWidth(), getPosition().getY() + 4, 8, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldLeft() {
-        return null;
+        return new Rectangle2D(getPosition().getX() - 2, getPosition().getY() + 4, 8, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldTop() {
-        return null;
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() - 2, getWidth() - 8, 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldBottom() {
-        return null;
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() + getHeight(), getWidth() - 8, 8);
+    }
+
+    //VERY Work in progress right now, calm down
+    public void attackright(ArrayList<DamagableGameEntity> enemies) {
+        for (DamagableGameEntity enemy : enemies) {
+            if (enemy.isinAttackfieldRight(this)) {
+                enemy.getDamage(new Weapon(2, idledown, 100, 1, 1));
+            }
+        }
     }
 }

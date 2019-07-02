@@ -1,10 +1,9 @@
-package Mechanics;
+package app.mechanics;
 
 
-import Objects.DamagableGameEntity;
 import javafx.scene.image.Image;
 
-public class Weapon extends Item {
+public class Weapon extends app.mechanics.Item {
 
     private final double damage;
 

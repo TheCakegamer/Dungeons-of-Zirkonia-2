@@ -1,10 +1,11 @@
-package Enemy;
+package app.enemy;
 
-import Level.BasicRoom;
-import Objects.DamagableGameEntity;
+import app.Vector2d;
+import app.level.BasicRoom;
+import app.objects.DamagableGameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import Player.MainChar;
+import app.player.MainChar;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,10 @@ public abstract class BasicAI extends DamagableGameEntity {
 
     private MainChar mainChar;
 
-    public BasicAI(double speedValue, double health, double posX, double posY, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
-        super(speedValue,
+    public BasicAI(Vector2d speed, double health, Vector2d position, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+        super(speed,
                 health,
-                posX,
-                posY,
+                position,
                 width,
                 height,
                 images,
@@ -26,11 +26,11 @@ public abstract class BasicAI extends DamagableGameEntity {
     }
 
     private double getMainCharDiffX() {
-        return this.getPosX() - mainChar.getPosX();
+        return this.getPosition().getX() - mainChar.getPosition().getX();
     }
 
     private double getMainCharDiffY() {
-        return this.getPosY() - mainChar.getPosY();
+        return this.getPosition().getX() - mainChar.getPosition().getY();
     }
 
     private boolean isMovedHorizontally() {
@@ -45,7 +45,7 @@ public abstract class BasicAI extends DamagableGameEntity {
         System.out.println("X: " + getMainCharDiffX());
         System.out.println("Y: " + getMainCharDiffY());
         if (isMovedHorizontally()) {
-            stopAll();
+            stop();
             if (getMainCharDiffX() > 0) {
                 moveLeft();
                 return;
@@ -54,7 +54,7 @@ public abstract class BasicAI extends DamagableGameEntity {
             return;
         }
         if (isMovedVertically()) {
-            stopAll();
+            stop();
             if (getMainCharDiffY() > 0) {
                 moveUp();
                 return;

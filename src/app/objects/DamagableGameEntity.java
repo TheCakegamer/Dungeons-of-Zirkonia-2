@@ -1,7 +1,8 @@
-package Objects;
+package app.objects;
 
-import Level.BasicRoom;
-import Mechanics.Weapon;
+import app.Vector2d;
+import app.level.BasicRoom;
+import app.mechanics.Weapon;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -13,9 +14,9 @@ public abstract class DamagableGameEntity extends MovingGameEntity {
     private double health;
     private double totalHealth;
 
-    public DamagableGameEntity(double speedValue, double health, double posX, double posY, double width, double height,
+    public DamagableGameEntity(Vector2d speed, double health, Vector2d position, double width, double height,
                                ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
-        super(speedValue, posX, posY, width, height, images, gContext, walls);
+        super(speed, position, width, height, images, gContext, walls);
         this.health = health;
         this.totalHealth = health;
     }
