@@ -1,6 +1,7 @@
 package Mechanics;
 
 
+import Objects.DamagableGameEntity;
 import javafx.scene.image.Image;
 
 public class Weapon extends Item {
@@ -12,8 +13,8 @@ public class Weapon extends Item {
         this.damage = damage;
     }
 
-    public void dealDamage(Health health) {
-        health.recieveDamage(damage);
+    public double dealDamage(double health) {
         durability = -durPerUse;
+        return health - damage;
     }
 }
