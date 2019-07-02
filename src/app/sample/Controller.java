@@ -23,14 +23,13 @@ public class Controller {
         wallList = new BasicRoom(MainCanvas.getGraphicsContext2D());
         mainChar = new MainChar(64, 64, 48, 48, MainCanvas.getGraphicsContext2D(), wallList);
         mainChar.inventory.additem(new Weapon(10, new Image(MainChar.class.getResource("/resources/Player.gif").toExternalForm()), 10, 1, 0));
-        slime = new Slime(new Vector2d(2, 0), new Vector2d(640, 640), 32, 32, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
+        slime = new Slime(0, new Vector2d(640, 640), 32, 32, MainCanvas.getGraphicsContext2D(), wallList, mainChar);
         gameLoop();
     }
 
 
     public void gameLoop() {
         AnimationTimer animationTimer = new AnimationTimer() {
-
             @Override
             public void handle(long now) {
                 addKeyInput(MainCanvas.getScene(), this);
@@ -44,24 +43,25 @@ public class Controller {
 
     public void addKeyInput(Scene scene, AnimationTimer animationTimer) {
         scene.setOnKeyPressed((event) -> {
+            System.out.println("key pressed");
             //Nach Rechts bewegen
             if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-                mainChar.moveRight();
+                mainChar.setSpeed(new Vector2d(5, mainChar.getSpeed().getY()));
                 System.out.println("RIGHT");
             }
             //Nach Links bewegen
             if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-                mainChar.moveLeft();
+                mainChar.setSpeed(new Vector2d(-5, mainChar.getSpeed().getY()));
                 System.out.println("LEFT");
             }
             //nach Oben
             if (event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
-                mainChar.moveUp();
+                mainChar.setSpeed(new Vector2d(mainChar.getSpeed().getX(), -5));
                 System.out.println("UP");
             }
             //nach Unten
             if (event.getCode() == KeyCode.S || event.getCode() == KeyCode.DOWN) {
-                mainChar.moveDown();
+                mainChar.setSpeed(new Vector2d(mainChar.getSpeed().getX(), 5));
                 System.out.println("DOWN");
             }
 
@@ -80,17 +80,12 @@ public class Controller {
 
 
         scene.setOnKeyReleased(event -> {
-            if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-                mainChar.stop();
+            if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D || event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
+//                mainChar.setSpeed(mainChar.getSpeed().add(new Vector2d(-5, 0)));
+                mainChar.setSpeed(new Vector2d(0, mainChar.getSpeed().getY()));
             }
-            if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-                mainChar.stop();
-            }
-            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W) {
-                mainChar.stop();
-            }
-            if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
-                mainChar.stop();
+            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.W || event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
+                mainChar.setSpeed(new Vector2d(mainChar.getSpeed().getX(), 0));
             }
         });
     }

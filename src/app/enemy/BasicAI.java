@@ -13,8 +13,8 @@ public abstract class BasicAI extends DamagableGameEntity {
 
     private MainChar mainChar;
 
-    public BasicAI(Vector2d speed, double health, Vector2d position, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
-        super(speed,
+    public BasicAI(double speedValue, double health, Vector2d position, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+        super(speedValue,
                 health,
                 position,
                 width,
@@ -42,8 +42,8 @@ public abstract class BasicAI extends DamagableGameEntity {
     }
 
     public void moveToMainChar() {
-        System.out.println("X: " + getMainCharDiffX());
-        System.out.println("Y: " + getMainCharDiffY());
+//        System.out.println("X: " + getMainCharDiffX());
+//        System.out.println("Y: " + getMainCharDiffY());
         if (isMovedHorizontally()) {
             stop();
             if (getMainCharDiffX() > 0) {

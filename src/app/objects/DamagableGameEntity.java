@@ -14,9 +14,9 @@ public abstract class DamagableGameEntity extends MovingGameEntity {
     private double health;
     private double totalHealth;
 
-    public DamagableGameEntity(Vector2d speed, double health, Vector2d position, double width, double height,
+    public DamagableGameEntity(double speedValue, double health, Vector2d position, double width, double height,
                                ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
-        super(speed, position, width, height, images, gContext, walls);
+        super(speedValue, position, width, height, images, gContext, walls);
         this.health = health;
         this.totalHealth = health;
     }

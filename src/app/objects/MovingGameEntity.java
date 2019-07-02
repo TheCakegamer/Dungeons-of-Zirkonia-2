@@ -34,6 +34,7 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
     private BasicRoom walls;
 
     private String lastdirection = "RIGHT";
+    private double speedValue;
 
 
     public abstract Rectangle2D getBottom();
@@ -44,9 +45,9 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
 
     public abstract Rectangle2D getTop();
 
-    public MovingGameEntity(Vector2d speed, Vector2d position, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
+    public MovingGameEntity(double speedValue, Vector2d position, double width, double height, ArrayList<Image> images, GraphicsContext gContext, BasicRoom walls) {
         super(position, width, height);
-        this.speed = speed;
+        this.speed = new Vector2d(0, 0);
         this.walkingup = images.get(0);
         this.walkingdown = images.get(1);
         this.walkingleft = images.get(2);
@@ -57,31 +58,33 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
         this.idleright = images.get(7);
         this.gContext = gContext;
         this.walls = walls;
+        this.speedValue = speedValue;
     }
 
     public void moveRight() {
-            speed = new Vector2d(speed.getLength(), 0);
+            speed = new Vector2d(speedValue, 0);
             lastdirection = "RIGHT";
     }
 
     public void moveLeft() {
-            speed = new Vector2d(-speed.getLength(), 0);
+            speed = new Vector2d(-speedValue, 0);
             lastdirection = "LEFT";
     }
 
     public void moveUp() {
-            speed = new Vector2d(0, -speed.getLength());
+            speed = new Vector2d(0, -speedValue);
             lastdirection = "UP";
     }
 
     public void moveDown() {
-            speed = new Vector2d(0, speed.getLength());
+            speed = new Vector2d(0, speedValue);
             lastdirection = "DOWN";
     }
 
     public void stop() {
         speed = new Vector2d(0, 0);
     }
+    public void setSpeed(Vector2d speed) { this.speed = speed; };
 
     public void redraw() {
         gContext.clearRect(

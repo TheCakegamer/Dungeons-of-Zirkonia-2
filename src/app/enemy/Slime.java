@@ -25,8 +25,8 @@ public class Slime extends BasicAI {
     public static ArrayList<Image> images = new ArrayList<>(Arrays.asList(walkingup, walkingdown, walkingleft, walkingright,
             idleup, idledown, idleleft, idleright));
 
-    public Slime(Vector2d speed, Vector2d position, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
-        super(speed,
+    public Slime(double speedValue, Vector2d position, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+        super(speedValue,
                 50,
                 position,
                 width,

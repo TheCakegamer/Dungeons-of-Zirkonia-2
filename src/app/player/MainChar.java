@@ -30,7 +30,7 @@ public class MainChar extends DamagableGameEntity {
     public Inventory inventory = new Inventory();
 
     public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
-        super(new Vector2d(5d, 0d), 100.0, new Vector2d(posX, posY), width, height, images, gContext, walls);
+        super(0, 100.0, new Vector2d(posX, posY), width, height, images, gContext, walls);
     }
 
 
