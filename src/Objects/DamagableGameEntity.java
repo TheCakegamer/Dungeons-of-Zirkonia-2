@@ -1,6 +1,8 @@
 package Objects;
 
 import Level.BasicRoom;
+import Mechanics.Weapon;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -18,6 +20,34 @@ public abstract class DamagableGameEntity extends MovingGameEntity {
         this.totalHealth = health;
     }
 
+    public abstract Rectangle2D getAttackfieldRight();
+
+    public abstract Rectangle2D getAttackfieldLeft();
+
+    public abstract Rectangle2D getAttackfieldTop();
+
+    public abstract Rectangle2D getAttackfieldBottom();
+
+    public boolean isinAttackfieldRight(DamagableGameEntity object) {
+        return object.getAttackfieldRight().intersects(this.getHitbox());
+    }
+
+    public boolean isinAttackfieldLeft(DamagableGameEntity object) {
+        return object.getAttackfieldLeft().intersects(this.getHitbox());
+    }
+
+    public boolean isinAttackfieldTop(DamagableGameEntity object) {
+        return object.getAttackfieldTop().intersects(this.getHitbox());
+    }
+
+    public boolean isinAttackfieldBottom(DamagableGameEntity object) {
+        return object.getAttackfieldBottom().intersects(this.getHitbox());
+    }
+
+    public void getDamage(Weapon weapon) {
+        weapon.dealDamage(health);
+        //TODO Knockback
+    }
 
     public double getHealth() {
         return health;

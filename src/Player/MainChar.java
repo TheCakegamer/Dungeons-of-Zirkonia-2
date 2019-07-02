@@ -1,6 +1,7 @@
 package Player;
 
 import Level.BasicRoom;
+import Mechanics.Weapon;
 import Objects.DamagableGameEntity;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -56,4 +57,32 @@ public class MainChar extends DamagableGameEntity {
         return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 2);
     }
 
+    @Override
+    public Rectangle2D getAttackfieldRight() {
+        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 4, 8, getHeight() - 8);
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldLeft() {
+        return new Rectangle2D(getPosX() - 2, getPosY() + 4, 8, getHeight() - 8);
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldTop() {
+        return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 8);
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldBottom() {
+        return new Rectangle2D(getPosX() + 4, getPosY() + getHeight(), getWidth() - 8, 8);
+    }
+
+    //VERY Work in progress right now, calm down
+    public void attackright(ArrayList<DamagableGameEntity> enemies) {
+        for (DamagableGameEntity enemy : enemies) {
+            if (enemy.isinAttackfieldRight(this)) {
+                enemy.getDamage(new Weapon(2, idledown, 100, 1, 1));
+            }
+        }
+    }
 }

@@ -64,4 +64,24 @@ public class Slime extends BasicAI {
     public Rectangle2D getTop() {
         return new Rectangle2D(getPosX() + 2, getPosY() - 2, getWidth() - 4, 2);
     }
+
+    @Override
+    public Rectangle2D getAttackfieldRight() {
+        return null;
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldLeft() {
+        return null;
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldTop() {
+        return null;
+    }
+
+    @Override
+    public Rectangle2D getAttackfieldBottom() {
+        return null;
+    }
 }
