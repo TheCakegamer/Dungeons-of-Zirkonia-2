@@ -93,7 +93,7 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
                 getWidth(),
                 getHeight());
 
-        setPosition(getPosition().add(speed));
+        setPosition(getPosition().add(getSpeed()));
 
         changeImage();
 
@@ -142,10 +142,33 @@ public abstract class MovingGameEntity extends app.objects.BasicGameEntity {
 
 
     public Vector2d getSpeed() {
-        if (!collisions.checkWallLeft(this, walls) || !collisions.checkWallRight(this, walls)) {
-            return new Vector2d(0, speed.getY());
-        } else if (!collisions.checkWallUp(this, walls) || !collisions.checkWallDown(this, walls)){
-            return new Vector2d(speed.getX(), 0);
+        if (!collisions.checkWallLeft(this, walls)) {
+            if (speed.getX() < 0) {
+                return new Vector2d(0, speed.getY());
+            } else {
+                return new Vector2d(speed.getX(), speed.getY());
+            }
+        }
+        if (!collisions.checkWallRight(this, walls)) {
+            if (speed.getX() > 0) {
+                return new Vector2d(0, speed.getY());
+            } else {
+                return new Vector2d(speed.getX(), speed.getY());
+            }
+        }
+        if (!collisions.checkWallUp(this, walls)) {
+            if (speed.getY() < 0) {
+                return new Vector2d(speed.getX(), 0);
+            } else {
+                return new Vector2d(speed.getX(), speed.getY());
+            }
+        }
+        if (!collisions.checkWallDown(this, walls)) {
+            if (speed.getY() > 0) {
+                return new Vector2d(speed.getX(), 0);
+            } else {
+                return new Vector2d(speed.getX(), speed.getY());
+            }
         }
         return speed;
     }
