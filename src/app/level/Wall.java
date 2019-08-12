@@ -1,6 +1,7 @@
-package Level;
+package app.level;
 
-import Objects.BasicGameEntity;
+import app.Vector2d;
+import app.objects.BasicGameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -10,7 +11,7 @@ public class Wall extends BasicGameEntity {
     private Image wallimg = new Image(getClass().getResource("/resources/dungeonwall.png").toExternalForm());
 
     public Wall(GraphicsContext gContext, double gridX, double gridY) {
-        super(gridX * 48, gridY * 48, 48, 48);
+        super(new Vector2d(gridX * 48, gridY * 48), 48, 48);
         this.gContext = gContext;
         setWidth(48);
         setHeight(48);
@@ -20,7 +21,7 @@ public class Wall extends BasicGameEntity {
     }
 
     public void drawWall() {
-        gContext.drawImage(wallimg, getPosX(), getPosY(), getWidth(), getHeight());
+        gContext.drawImage(wallimg, getPosition().getX(), getPosition().getY(), getWidth(), getHeight());
     }
 
     private void resetWall() {
@@ -30,12 +31,12 @@ public class Wall extends BasicGameEntity {
     }
 
     private void setGridX(double gridX) {
-        setPosX(gridX * 48);
+        setPosition(new Vector2d(gridX * 48, getPosition().getY()));
     }
 
 
     private void setGridY(double gridY) {
-        setPosY(gridY * 48);
+        setPosition(new Vector2d(getPosition().getX(),gridY * 48));
     }
 
     public void setWallimg(Image wallimg) {

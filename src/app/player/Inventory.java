@@ -1,6 +1,6 @@
-package Player;
+package app.player;
 
-import Mechanics.Item;
+import app.mechanics.Item;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -11,8 +11,8 @@ public class Inventory {
 
     public void additem(Item newItem) {
         if (inventory.size() < 9) {
-            inventory.add(newItem.slot, newItem);
-            System.out.println("-------------" + newItem.slot);
+            inventory.add(newItem.getSlot(), newItem);
+            System.out.println("-------------" + newItem.getSlot());
         }
     }
 

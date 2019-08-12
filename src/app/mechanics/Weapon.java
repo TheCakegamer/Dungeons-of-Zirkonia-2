@@ -1,20 +1,18 @@
-package Mechanics;
+package app.mechanics;
 
 
-import Objects.DamagableGameEntity;
 import javafx.scene.image.Image;
 
-public class Weapon extends Item {
+public class Weapon extends app.mechanics.Item {
 
-    public double damage;
+    private final double damage;
 
     public Weapon(double damage, Image image, double durability, double durPerHit, int slot) {
         super(image, durability, durPerHit, slot);
         this.damage = damage;
     }
 
-    public double dealDamage(double health) {
-        durability = -durPerUse;
-        return health - damage;
+    public double getDamage() {
+        return damage;
     }
 }

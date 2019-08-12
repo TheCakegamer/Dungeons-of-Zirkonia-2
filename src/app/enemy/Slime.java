@@ -1,7 +1,8 @@
-package Enemy;
+package app.enemy;
 
-import Level.BasicRoom;
-import Player.MainChar;
+import app.Vector2d;
+import app.level.BasicRoom;
+import app.player.MainChar;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -24,19 +25,16 @@ public class Slime extends BasicAI {
     public static ArrayList<Image> images = new ArrayList<>(Arrays.asList(walkingup, walkingdown, walkingleft, walkingright,
             idleup, idledown, idleleft, idleright));
 
-    public Slime(double speedValue, double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
+    public Slime(double speedValue, Vector2d position, double width, double height, GraphicsContext gContext, BasicRoom walls, MainChar mainChar) {
         super(speedValue,
                 50,
-                posX,
-                posY,
+                position,
                 width,
                 height,
                 images,
                 gContext,
                 walls,
                 mainChar);
-        setPosX(posX);
-        setPosY(posY);
     }
 
     @Override
@@ -47,22 +45,22 @@ public class Slime extends BasicAI {
 
     @Override
     public Rectangle2D getBottom() {
-        return new Rectangle2D(getPosX() + 2, getPosY() + getHeight(), getWidth() - 4, 2);
+        return new Rectangle2D(getPosition().getX() + 2, getPosition().getY() + getHeight(), getWidth() - 4, 2);
     }
 
     @Override
     public Rectangle2D getLeft() {
-        return new Rectangle2D(getPosX() - 2, getPosY() + 2, 2, getHeight() - 4);
+        return new Rectangle2D(getPosition().getX() - 2, getPosition().getY() + 2, 2, getHeight() - 4);
     }
 
     @Override
     public Rectangle2D getRight() {
-        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 2, 2, getHeight() - 4);
+        return new Rectangle2D(getPosition().getX() + getWidth(), getPosition().getY() + 2, 2, getHeight() - 4);
     }
 
     @Override
     public Rectangle2D getTop() {
-        return new Rectangle2D(getPosX() + 2, getPosY() - 2, getWidth() - 4, 2);
+        return new Rectangle2D(getPosition().getX() + 2, getPosition().getY() - 2, getWidth() - 4, 2);
     }
 
     @Override

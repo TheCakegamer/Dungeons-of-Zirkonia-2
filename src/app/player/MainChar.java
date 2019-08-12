@@ -1,8 +1,9 @@
-package Player;
+package app.player;
 
-import Level.BasicRoom;
-import Mechanics.Weapon;
-import Objects.DamagableGameEntity;
+import app.Vector2d;
+import app.level.BasicRoom;
+import app.mechanics.Weapon;
+import app.objects.DamagableGameEntity;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -29,7 +30,7 @@ public class MainChar extends DamagableGameEntity {
     public Inventory inventory = new Inventory();
 
     public MainChar(double posX, double posY, double width, double height, GraphicsContext gContext, BasicRoom walls) {
-        super(5, 100.0, posX, posY, width, height, images, gContext, walls);
+        super(0, 100.0, new Vector2d(posX, posY), width, height, images, gContext, walls);
     }
 
 
@@ -39,42 +40,42 @@ public class MainChar extends DamagableGameEntity {
 
     @Override
     public Rectangle2D getBottom() {
-        return new Rectangle2D(getPosX() + 4, getPosY() + getHeight(), getWidth() - 8, 2);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() + getHeight(), getWidth() - 8, 2);
     }
 
     @Override
     public Rectangle2D getLeft() {
-        return new Rectangle2D(getPosX() - 2, getPosY() + 4, 2, getHeight() - 8);
+        return new Rectangle2D(getPosition().getX() - 2, getPosition().getY() + 4, 2, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getRight() {
-        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 4, 2, getHeight() - 8);
+        return new Rectangle2D(getPosition().getX() + getWidth(), getPosition().getY() + 4, 2, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getTop() {
-        return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 2);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() - 2, getWidth() - 8, 2);
     }
 
     @Override
     public Rectangle2D getAttackfieldRight() {
-        return new Rectangle2D(getPosX() + getWidth(), getPosY() + 4, 8, getHeight() - 8);
+        return new Rectangle2D(getPosition().getX() + getWidth(), getPosition().getY() + 4, 8, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldLeft() {
-        return new Rectangle2D(getPosX() - 2, getPosY() + 4, 8, getHeight() - 8);
+        return new Rectangle2D(getPosition().getX() - 2, getPosition().getY() + 4, 8, getHeight() - 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldTop() {
-        return new Rectangle2D(getPosX() + 4, getPosY() - 2, getWidth() - 8, 8);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() - 2, getWidth() - 8, 8);
     }
 
     @Override
     public Rectangle2D getAttackfieldBottom() {
-        return new Rectangle2D(getPosX() + 4, getPosY() + getHeight(), getWidth() - 8, 8);
+        return new Rectangle2D(getPosition().getX() + 4, getPosition().getY() + getHeight(), getWidth() - 8, 8);
     }
 
     //VERY Work in progress right now, calm down

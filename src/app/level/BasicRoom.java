@@ -1,4 +1,4 @@
-package Level;
+package app.level;
 
 import javafx.scene.canvas.GraphicsContext;
 

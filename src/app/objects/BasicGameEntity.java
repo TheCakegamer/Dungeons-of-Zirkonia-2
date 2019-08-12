@@ -1,33 +1,25 @@
-package Objects;
+package app.objects;
+
+import app.Vector2d;
 
 public abstract class BasicGameEntity {
 
-    private double posX;
-    private double posY;
+    private Vector2d position;
     private double height;
     private double width;
 
-    public BasicGameEntity(double posX, double posY, double width, double height) {
-        this.posX = posX;
-        this.posY = posY;
+    public BasicGameEntity(Vector2d position, double width, double height) {
+        this.position = position;
         this.height = height;
         this.width = width;
     }
 
-    public double getPosX() {
-        return posX;
+    public Vector2d getPosition() {
+        return position;
     }
 
-    public void setPosX(double posX) {
-        this.posX = posX;
-    }
-
-    public double getPosY() {
-        return posY;
-    }
-
-    public void setPosY(double posY) {
-        this.posY = posY;
+    public void setPosition(Vector2d position) {
+        this.position = position;
     }
 
     public double getHeight() {
